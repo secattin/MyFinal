@@ -18,7 +18,7 @@ namespace DataAccess.concrete.EntityFramawork
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=DESKTOP-DE1PTH4\SQLEXPRESS;Database=Northwind;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"server=DESKTOP-2D56B4K\SQLEXPRESS;Database=Northwind;Trusted_Connection=true");
         }
         // ef daldan sonra gel buraya
         public DbSet<Product> products { get; set; }
