@@ -40,19 +40,29 @@ namespace Business.Concrete
             return new SuccesDataResult<Product>(_productDal.Get(p => p.ProductID == productId));
         }
 
+        public IDataResult<List<Product>> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<ProductDetailDto>> GetProductDetailDtos()
         {
             return new SuccesDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailDtos());
         }
 
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResult<List<Product>> GettAll()
         {
-            if(DateTime.Now.Hour == 22) 
+            if(DateTime.Now.Hour == 11) 
             {
                 return new ErorDataResult<List<Product>>(Messages.MaintenanceTime);
             }
             // iş kodları
-            return new DataResult<List<Product>>(_productDal.GettAll(),Messages.ProductsListed );
+            return new SuccesDataResult<List<Product>>(_productDal.GettAll(),Messages.ProductsListed);
         }
 
         public IDataResult<List<Product>> GettByCategoryId(int id)
