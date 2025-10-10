@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Business;
 using Core.CrossCuttingConcerns.Validation;
@@ -37,6 +39,8 @@ namespace Business.Concrete
         //[ValidationAspect(typeof(ProductValidator))]// attribute gibi davranır validation aspect çalışır
 
 
+        [SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             
@@ -58,6 +62,7 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+        [CacheAspect]// key,value key =GettAll
         public IDataResult<Product> getById(int productId)
         {
             return new SuccesDataResult<Product>(_productDal.Get(p => p.ProductID == productId));
@@ -77,7 +82,7 @@ namespace Business.Concrete
         {
             throw new NotImplementedException();
         }
-
+        [CacheAspect]// key,value key =GettAll value=datatipinde    
         public IDataResult<List<Product>> GettAll()
         {
             if (DateTime.Now.Hour == 11)

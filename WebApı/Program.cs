@@ -25,6 +25,7 @@ namespace WebApı
             .ConfigureContainer<ContainerBuilder>(builder=>
             {
                 builder.RegisterModule(new AutofacBusinessModule());
+               
             })
                
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -32,5 +33,9 @@ namespace WebApı
                     
                     webBuilder.UseStartup<Startup>();
                 });
+
+       
+
+
     }
 }
